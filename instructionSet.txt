@@ -1,5 +1,8 @@
-
+# NOTES - <operand> accepts #num or R(num), # is direct addressing, R is a register addressing
+		- <memory ref> accepts a number which corresponds to a line number in the input file (STARTING AT LINE 1)
 VAL <operand1> Stores a value
+// <commet> Is a whole line comment
+::<label> Is a label
 LDR Rd, <memory ref> Load the value stored in the memory location
 	specified by <memory ref> into register d.
 STR Rd, <memory ref> Store the value that is in register d into the
