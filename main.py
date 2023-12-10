@@ -55,7 +55,10 @@ class Processor:
         self.read(fileName)
         while self.pc != len(self.mem) - 1:
             self.pc += 1
-            self.exec() # WRAP IN TRY FOR ERROR STATEMENTS
+            try: self.exec() # WRAP IN TRY FOR ERROR STATEMENTS
+            except:
+                print(f'Error at line {self.pc}: {self.mem[self.pc]}')
+                exit()
             self.display()
             input('[]: ')
         print('End of memory / HALT reached')
@@ -157,7 +160,8 @@ class Processor:
                 self.reg[cir[1].val] = self.reg[cir[2].val] >> val
                 self.displayMsg += f'Stored a logiccal shift right on {cir[2]} by {cir[3]} in {cir[1]}'
             case _:
-                self.displayMsg = 'Unkown command'
+                print('Unkown command')
+                raise Exception()
 
     def find(self, inst: str) -> int:
         print(Instruction(inst))
