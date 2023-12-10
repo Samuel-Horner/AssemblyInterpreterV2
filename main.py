@@ -199,5 +199,4 @@ class Processor:
 if __name__ == '__main__':
     cpu = Processor(8)
     fileName = input('Enter file name:\n')
-    fileName = 't.asl'
     cpu.run(fileName)
