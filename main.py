@@ -1,3 +1,5 @@
+import sys
+
 class Component:
     def __init__(self, string: str):
         if string[0] in ['#', 'R']:
@@ -202,5 +204,8 @@ class Processor:
 
 if __name__ == '__main__':
     cpu = Processor(8)
-    fileName = input('Enter file name:\n')
+    if len(sys.argv) == 2:
+        fileName = sys.argv[1]
+    else:
+        fileName = input('Enter file name:\n')
     cpu.run(fileName)
