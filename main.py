@@ -114,9 +114,7 @@ class Processor:
                 else: self.acc = 3
                 self.displayMsg += f'Compared {cir[1]} to {cir[2]}'
             case 'B':
-                print(cir[1].val)
                 self.pc = self.find(f'::{cir[1].val}') - 1
-                print(self.pc)
                 self.displayMsg += f'Branched'
             case 'BEQ':
                 if self.acc == 1:
