@@ -10,7 +10,6 @@ class Component:
             self.adm = False
             try: self.val = int(string)
             except: self.val = string
-
     def __str__(self) -> str:
         return self.adm + str(self.val) if self.adm else str(self.val)
 
@@ -19,7 +18,7 @@ class Instruction:
         if len(string) < 2:
             self.inst = ['']
         elif string[:2] == '//' or string[:2] == '::':
-            self.inst = [string.upper()]
+            self.inst = [string]
         else:
             instArr = string.strip().split(' ')
             self.inst = [instArr[0]]
@@ -57,7 +56,7 @@ class Processor:
         self.read(fileName)
         while self.pc != len(self.mem) - 1:
             self.pc += 1
-            try: self.exec() # WRAP IN TRY FOR ERROR STATEMENTS
+            try: self.exec()
             except:
                 print(f'Error at line {self.pc}: {self.mem[self.pc]}')
                 exit()
@@ -115,7 +114,9 @@ class Processor:
                 else: self.acc = 3
                 self.displayMsg += f'Compared {cir[1]} to {cir[2]}'
             case 'B':
+                print(cir[1].val)
                 self.pc = self.find(f'::{cir[1].val}') - 1
+                print(self.pc)
                 self.displayMsg += f'Branched'
             case 'BEQ':
                 if self.acc == 1:
@@ -166,8 +167,6 @@ class Processor:
                 raise Exception()
 
     def find(self, inst: str) -> int:
-        print(Instruction(inst))
-        print(self.mem[24])
         return self.mem.index(Instruction(inst))
 
     def getVal(self, cmpo: Component) -> int:
