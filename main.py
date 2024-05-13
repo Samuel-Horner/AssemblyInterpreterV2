@@ -92,7 +92,7 @@ class Processor:
                 self.reg[cir[1].val] = self.mem[cir[2].val][1].val
                 self.displayMsg += f'Loaded value {self.mem[cir[2].val][1].val} into {cir[1]}'
             case 'STR':
-                self.mem[cir[2].val] = Instruction(f'VAL {self.reg[cir[1].val]}')
+                self.mem[cir[2].val] = Instruction(f'VAL #{self.reg[cir[1].val]}')
                 self.displayMsg = f'Stored value {self.reg[cir[1].val]} ({cir[1]})'
             case 'ADD':
                 val = self.getVal(cir[3])
